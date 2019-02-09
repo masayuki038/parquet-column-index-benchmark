@@ -1,0 +1,6 @@
+/.idea/
+/test-data/
+/target
+*.iml
+*.parquet
+*.parquet.crc
