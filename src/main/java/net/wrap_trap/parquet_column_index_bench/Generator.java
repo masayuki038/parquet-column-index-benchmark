@@ -27,7 +27,7 @@ public class Generator {
   public static final int BINARY_FIELD_INDEX = 4;
   public static final int TIMESTAMP_FIELD_INDEX = 5;
 
-  static String TEST_FILE = "src/test/resources/v11.parquet";
+  static String TEST_FILE = "src/test/resources/v10.parquet";
 
   public static void main(String[] args) throws IOException, ParseException {
     generateParquetFile(TEST_FILE);

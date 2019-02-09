@@ -23,21 +23,15 @@ import static org.apache.parquet.filter2.predicate.FilterApi.eq;
 public class Bench {
 
   @Benchmark
-  public void filteringScanWithColumnIndex() throws IOException {
-    filteringScan(true);
+  public void filteringScanWithPageIndex() throws IOException {
+    filteringScan();
   }
 
-  @Benchmark
-  public void filteringScanWithoutColumnIndex() throws IOException {
-    filteringScan(false);
-  }
-
-  private void filteringScan(boolean useColumnIndexFilter) throws IOException {
+  private void filteringScan() throws IOException {
     Path inPath = new Path(Generator.TEST_FILE);
     FilterPredicate actualFilter = eq(binaryColumn("binary_field"), Binary.fromString("abcdefghijklmnopqrstuvwxyz524288"));
     ParquetReader<Group> reader = ParquetReader.builder(new GroupReadSupport(), inPath)
-      .withFilter(FilterCompat.get(actualFilter))
-      .useColumnIndexFilter(useColumnIndexFilter).build();
+      .withFilter(FilterCompat.get(actualFilter)).build();
     Group group;
     while ((group = reader.read()) != null) {
       assert(group.getBinary("binary_field", 0).toString().equals("abcdefghijklmnopqrstuvwxyz524288"));
