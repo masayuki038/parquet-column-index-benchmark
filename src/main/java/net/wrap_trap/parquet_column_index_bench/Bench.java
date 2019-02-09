@@ -22,6 +22,8 @@ import static org.apache.parquet.filter2.predicate.FilterApi.eq;
 
 public class Bench {
 
+  private static final String TARGET = "abcdefghijklmnopqrstuvwxyz5242880";
+
   @Benchmark
   public void filteringScanWithPageIndex() throws IOException {
     filteringScan();
@@ -29,12 +31,13 @@ public class Bench {
 
   private void filteringScan() throws IOException {
     Path inPath = new Path(Generator.TEST_FILE);
-    FilterPredicate actualFilter = eq(binaryColumn("binary_field"), Binary.fromString("abcdefghijklmnopqrstuvwxyz524288"));
+    FilterPredicate actualFilter = eq(binaryColumn("binary_field"), Binary.fromString(TARGET));
     ParquetReader<Group> reader = ParquetReader.builder(new GroupReadSupport(), inPath)
       .withFilter(FilterCompat.get(actualFilter)).build();
     Group group;
     while ((group = reader.read()) != null) {
-      assert(group.getBinary("binary_field", 0).toString().equals("abcdefghijklmnopqrstuvwxyz524288"));
+      System.out.println(TARGET + " Found");
+      assert(group.getBinary("binary_field", 0).toString().equals("abcdefghijklmnopqrstuvwxyz5242880"));
     }
   }
 
