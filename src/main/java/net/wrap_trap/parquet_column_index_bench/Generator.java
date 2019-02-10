@@ -20,13 +20,6 @@ import java.util.Date;
 
 public class Generator {
 
-  public static final int INT32_FIELD_INDEX = 0;
-  public static final int INT64_FIELD_INDEX = 1;
-  public static final int FLOAT_FIELD_INDEX = 2;
-  public static final int DOUBLE_FIELD_INDEX = 3;
-  public static final int BINARY_FIELD_INDEX = 4;
-  public static final int TIMESTAMP_FIELD_INDEX = 5;
-
   static String TEST_FILE = "src/test/resources/v11.parquet";
 
   public static void main(String[] args) throws IOException, ParseException {
