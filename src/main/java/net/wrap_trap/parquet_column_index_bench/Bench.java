@@ -25,7 +25,7 @@ public class Bench {
   private static final String TARGET = "abcdefghijklmnopqrstuvwxyz5242880";
 
   @Benchmark
-  public void filteringScanWithPageIndex() throws IOException {
+  public void filteringScanV10() throws IOException {
     filteringScan();
   }
 
