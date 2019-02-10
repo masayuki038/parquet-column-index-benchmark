@@ -37,7 +37,7 @@ public class Bench {
     Group group;
     while ((group = reader.read()) != null) {
       System.out.println(TARGET + " Found");
-      assert(group.getBinary("binary_field", 0).toString().equals("abcdefghijklmnopqrstuvwxyz5242880"));
+      assert(group.getBinary("binary_field", 0).toString().equals(TARGET));
     }
   }
 
